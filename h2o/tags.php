@@ -208,6 +208,9 @@ class Block_Tag extends H2o_Node {
     function render($context, $stream, $index = 1) {
         $key = count($this->stack) - $index;
 
+        //fix extends 
+        if($key<0) $key = 0;
+
         if (isset($this->stack[$key])) {
             $context->push();
             $context['block'] = new BlockContext($this, $context, $index);
